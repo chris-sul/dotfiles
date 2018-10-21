@@ -63,3 +63,13 @@ alias grace="ssh grace7.umd.edu -t '~/tmux/tmux-2.7/tmux'"
 
 alias c="clear"
 
+# Directory traversal
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ~="cd ~"
+alias -- -="cd -"
+
+# Shortcuts
+alias rr="rm -rf"
+
