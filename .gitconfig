@@ -1,0 +1,18 @@
+[user]
+    name = Chris Sullivan
+    email = codemastermd@gmail.com
+    signingkey = 6197DE0D68FE8F1B
+
+[commit]
+    gpgsign = true
+
+[github]
+    user = codemastermd
+
+[gitlab]
+    user = chrissul
+
+[core]
+    excludesfile = ~/.gitignore_global
+    editor = vim
+
