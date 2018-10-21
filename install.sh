@@ -8,3 +8,6 @@ ln -sf "$DOTFILES_DIR/.gitignore_global" ~
 ln -sf "$DOTFILES_DIR/.bashrc" ~
 ln -sf "$DOTFILES_DIR/.vimrc" ~
 ln -sf "$DOTFILES_DIR/.tmux.conf" ~
+
+# Set tmux config
+tmux source-file ~/.tmux.conf
