@@ -47,9 +47,9 @@ export -f tmuxinit
 function ta {
     if [ -z "$2" ]
     then
-        ssh "$1" -t 'tmux a chrissul';
+        ssh "$1" -t 'tmux a -t chrissul';
     else
-        ssh "$1" -p "$2" -t 'tmux a chrissul';
+        ssh "$1" -p "$2" -t 'tmux a -t chrissul';
     fi    
 }
 export -f ta
