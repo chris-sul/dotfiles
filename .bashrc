@@ -73,3 +73,5 @@ alias -- -="cd -"
 # Shortcuts
 alias rr="rm -rf"
 
+# Clean old git branches
+alias gitclean="git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d"
