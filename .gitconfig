@@ -9,9 +9,6 @@
 [github]
     user = codemastermd
 
-[gitlab]
-    user = chrissul
-
 [core]
     excludesfile = ~/.gitignore_global
     editor = vim

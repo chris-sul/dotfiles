@@ -75,3 +75,5 @@ alias rr="rm -rf"
 
 # Clean old git branches
 alias gitclean="git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
