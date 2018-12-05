@@ -54,12 +54,19 @@ function ta {
 }
 export -f ta
 
+# For flushing dns
+function flushdns {
+    dscacheutil -flushcache;
+    sudo killall -HUP mDNSResponder;
+}
+export -f flushdns
+
 # Docker stuff
 alias dup="docker-compose up"
 alias dexec="docker exec -ti"
 
 # For grace.umd.edu
-alias grace="ssh grace7.umd.edu -t '~/tmux/tmux-2.7/tmux'"
+alias grace="ssh -Y grace7.umd.edu"
 
 alias c="clear"
 
@@ -75,5 +82,7 @@ alias rr="rm -rf"
 
 # Clean old git branches
 alias gitclean="git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d"
+
+alias vi="vim"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
