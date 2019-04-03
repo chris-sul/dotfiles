@@ -57,6 +57,8 @@ function ta {
 }
 export -f ta
 
+alias tmuxdev="tmux source-file ~/.tmux.session"
+
 # For flushing dns
 function flushdns {
     dscacheutil -flushcache;
