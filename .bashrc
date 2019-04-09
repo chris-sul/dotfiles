@@ -57,7 +57,7 @@ function ta {
 }
 export -f ta
 
-alias tmuxdev="tmux source-file ~/.tmux.session"
+alias tmux="tmux attach"
 
 # For flushing dns
 function flushdns {
