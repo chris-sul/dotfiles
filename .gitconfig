@@ -1,15 +1,19 @@
-[user]
-    name = Chris Sullivan
-    email = codemastermd@gmail.com
-    signingkey = 6197DE0D68FE8F1B
+[push]
+    default = simple
 
-[commit]
-    gpgsign = true
+[alias]
+    unstage = reset HEAD --
+    st = status
+    rebase-feature = "!f() { git rebase -i `git merge-base --fork-point master`; }; f"
+    branches = !legit branches
+    sync = !legit sync
 
-[github]
-    user = codemastermd
+[color]
+    ui = auto
 
 [core]
     excludesfile = ~/.gitignore_global
     editor = vim
 
+[include]
+    path = ~/.gitconfig_local
