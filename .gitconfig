@@ -5,6 +5,7 @@
     unstage = reset HEAD --
     st = status
     rebase-feature = "!f() { git rebase -i `git merge-base --fork-point master`; }; f"
+    update-feature = "!f() { git checkout master && git pull && git checkout - && git rebase master; }; f"
     branches = !legit branches
     sync = !legit sync
 
