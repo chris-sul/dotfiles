@@ -59,6 +59,8 @@ export -f ta
 
 alias tmux="tmux attach"
 
+alias prunemergedbranches='git checkout master && git pull && git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d; git fetch --prune'
+
 # For flushing dns
 function flushdns {
     dscacheutil -flushcache;
