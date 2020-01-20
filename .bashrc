@@ -18,6 +18,8 @@ alias l='ls -CF'
 
 alias vi="vim"
 
+alias ports='netstat -tulanp'
+
 alias grepe="grep -rnw . -e" 
 
 # Add an "alert" alias for long running commands.  Use like so:
