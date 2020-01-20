@@ -74,9 +74,6 @@ export -f flushdns
 alias dup="docker-compose up"
 alias dexec="docker exec -ti"
 
-# For grace.umd.edu
-alias grace="ssh -Y grace7.umd.edu"
-
 alias c="clear"
 
 # Directory traversal
