@@ -26,6 +26,8 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug('morhetz/gruvbox')
   Plug('easymotion/vim-easymotion')
   Plug('tpope/vim-surround')
+  Plug('tpope/vim-fugitive')
+  Plug('vim-airline/vim-airline')
 
 vim.call ('plug#end')
 
@@ -42,6 +44,9 @@ if fn.empty('$TMUX') then
     execute('set termguicolors')
   end
 end
+
+execute('set t_Co=256')
+execute('let g:airline_powerline_fonts = 1')
 
 -- Custom Config
 vim.g.mapleader = ' '
