@@ -1,0 +1,4 @@
+new
+split-window -v
+selectp -t 0
+splitw -h
