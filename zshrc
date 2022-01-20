@@ -121,6 +121,9 @@ fi
 
 export AWS_USER_STAGE=chrissul
 
+alias vim="nvim"
+alias vi="nvim"
+
 alias lg="lazygit"
 
 # Docker Aliases
