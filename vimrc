@@ -4,8 +4,15 @@
 " Reamp jk to be esc for QOL  
 imap jk <Esc>
 
-" Sets how many lines of history VIM has to remmeber
-set history=500
+" Sets how many lines of history VIM has to remmeber set history=500
+
+
+" NeoVim
+set nocompatible
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+""
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -37,3 +44,11 @@ set tabstop=4
 
 set ai " Auto indent
 set si " Smart indent
+
+" Window managerment
+set splitbelow
+set splitright
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>

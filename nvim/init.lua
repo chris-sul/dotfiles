@@ -20,18 +20,51 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
-  Plug('neovim/nvim-lspconfig')
-  Plug('nvim-lua/plenary.nvim')
-  Plug('nvim-telescope/telescope.nvim')
-  Plug('morhetz/gruvbox')
+  -- Apperance
+  Plug('vim-airline/vim-airline')
+  Plug('dracula/vim', {as= 'dracula'} )
+  --Plug('ryanoasis/vim-devicons')
+
+  -- Utils
+  Plug('sheerun/vim-polyglot')
   Plug('easymotion/vim-easymotion')
   Plug('tpope/vim-surround')
-  Plug('tpope/vim-fugitive')
-  Plug('vim-airline/vim-airline')
+  Plug('jiangmiao/auto-pairs')
+  --Plug('nvim-lua/plenary.nvim')
+  --Plug('nvim-telescope/telescope.nvim')
+  Plug('kyazdani42/nvim-web-devicons')
+  Plug('kyazdani42/nvim-tree.lua')
+  Plug('junegunn/fzf', { ['do']= ':call fzf#install()' })
+  Plug('junegunn/fzf.vim')
+
+  -- Completion / linters / formatters
+  Plug('neoclide/coc.nvim', {['branch']= 'master', ['do']= 'yarn install' })
+
+  -- Git
+  Plug('airblade/vim-gitgutter')
 
 vim.call ('plug#end')
 
-execute('autocmd vimenter * ++nested colorscheme gruvbox')
+-- nvim tree setup 
+require('nvim-tree').setup {}
+vim.api.nvim_set_keymap(
+  "n",
+  "<C-n>",
+  ":NvimTreeToggle<cr>",
+  { noremap = true, silent=true }
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>r",
+  ":NvimTreeRefresh<cr>",
+  { noremap = true, silent=true }
+)
+
+-- Language server stuff
+execute("command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')")
+
+execute('let g:dracula_colorterm = 0')
+execute('colorscheme dracula')
 
 -- Colors
 
@@ -51,10 +84,19 @@ execute('let g:airline_powerline_fonts = 1')
 -- Custom Config
 vim.g.mapleader = ' '
 
+-- Fzf
 vim.api.nvim_set_keymap(
   "n",
   "<leader>ff",
-  ":lua require('telescope.builtin').find_files()<cr>",
+  ":FZF<cr>",
   { noremap = true, silent=true }
 )
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>fg",
+  ":lua require('telescope.builtin').live_grep()<cr>",
+  { noremap = true, silent=true }
+  )
+
 
