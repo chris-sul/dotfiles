@@ -43,6 +43,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug('kyazdani42/nvim-tree.lua')
   --Plug('junegunn/fzf', { ['do']= ':call fzf#install()' })
   --Plug('junegunn/fzf.vim')
+  Plug('github/copilot.vim')
 
   -- Completion / linters / formatters
   Plug('neoclide/coc.nvim', {['branch']= 'master', ['do']= 'yarn install' })
