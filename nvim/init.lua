@@ -5,6 +5,13 @@ local fn = vim.fn
 -- Pull in vimrc
 execute('source ~/.vimrc')
 
+if (vim.g.vscode) then
+  -- vscode specific stuff 
+  vim.g.mapleader = " "
+
+else
+
+  vim.g.mapleader = " "
 -- Plugins
 
 -- ensure that plug is installed
@@ -97,10 +104,7 @@ execute('set t_Co=256')
 execute('let g:airline_powerline_fonts = 1')
 execute('let g:airline#extensions#tabline#enabled = 1')
 
--- Custom Config
-vim.g.mapleader = ' '
-
--- Fzf
+-- Telescope
 vim.api.nvim_set_keymap(
   "n",
   "<leader>ff",
@@ -121,4 +125,5 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent=true }
   )
 
+end
 

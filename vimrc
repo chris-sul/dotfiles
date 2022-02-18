@@ -18,7 +18,13 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 " => VIM user interface
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Set relative line numbers
-set relativenumber
+:set number
+
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+:  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+:augroup END
 
 " Always show current position
 set ruler
