@@ -30,12 +30,12 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug('easymotion/vim-easymotion')
   Plug('tpope/vim-surround')
   Plug('jiangmiao/auto-pairs')
-  --Plug('nvim-lua/plenary.nvim')
-  --Plug('nvim-telescope/telescope.nvim')
+  Plug('nvim-lua/plenary.nvim')
+  Plug('nvim-telescope/telescope.nvim')
   Plug('kyazdani42/nvim-web-devicons')
   Plug('kyazdani42/nvim-tree.lua')
-  Plug('junegunn/fzf', { ['do']= ':call fzf#install()' })
-  Plug('junegunn/fzf.vim')
+  --Plug('junegunn/fzf', { ['do']= ':call fzf#install()' })
+  --Plug('junegunn/fzf.vim')
 
   -- Completion / linters / formatters
   Plug('neoclide/coc.nvim', {['branch']= 'master', ['do']= 'yarn install' })
@@ -53,6 +53,7 @@ vim.api.nvim_set_keymap(
   ":NvimTreeToggle<cr>",
   { noremap = true, silent=true }
 )
+
 vim.api.nvim_set_keymap(
   "n",
   "<leader>r",
@@ -60,6 +61,20 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent=true }
 )
 
+-- switching buffers
+vim.api.nvim_set_keymap(
+  "n",
+  "<C-J>",
+  ":bnext<cr>",
+  { noremap = true, silent=true }
+)
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<C-K>",
+  ":bprev<cr>",
+  { noremap = true, silent=true }
+)
 -- Language server stuff
 execute("command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')")
 
@@ -80,6 +95,7 @@ end
 
 execute('set t_Co=256')
 execute('let g:airline_powerline_fonts = 1')
+execute('let g:airline#extensions#tabline#enabled = 1')
 
 -- Custom Config
 vim.g.mapleader = ' '
@@ -88,10 +104,16 @@ vim.g.mapleader = ' '
 vim.api.nvim_set_keymap(
   "n",
   "<leader>ff",
-  ":FZF<cr>",
+  ":lua require('telescope.builtin').find_files()<cr>",
   { noremap = true, silent=true }
 )
 
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>fb",
+  ":lua require('telescope.builtin').buffers()<cr>",
+  { noremap = true, silent=true }
+)
 vim.api.nvim_set_keymap(
   "n",
   "<leader>fg",
