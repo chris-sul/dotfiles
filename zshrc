@@ -1,3 +1,7 @@
+source ~/zsh-snap/znap.zsh
+# Need to install this manually
+# Run znap pull
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -107,6 +111,11 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+
+# plugins
+znap source zsh-users/zsh-autosuggestions
+znap source zsh-users/zsh-syntax-highlighting
+
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
