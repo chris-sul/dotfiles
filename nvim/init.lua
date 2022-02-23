@@ -6,7 +6,7 @@ local fn = vim.fn
 execute('source ~/.vimrc')
 
 if (vim.g.vscode) then
-  -- vscode specific stuff 
+  -- vscode specific stuff
   vim.g.mapleader = " "
 
 else
@@ -31,7 +31,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug('vim-airline/vim-airline')
   Plug('joshdick/onedark.vim', {as= 'onedark'} )
 
-  --Plug('ryanoasis/vim-devicons')
+  Plug('ryanoasis/vim-devicons')
 
   -- Utils
   Plug('sheerun/vim-polyglot')
@@ -49,7 +49,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 
   -- Completion / linters / formatters
   Plug('nvim-treesitter/nvim-treesitter', {['do']= ':TSUpdate' })
-  
+
   -- lsp
   Plug('neovim/nvim-lspconfig', {['branch']= 'master', ['do']= 'yarn install' })
 
@@ -93,17 +93,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-end
 
-local servers = { 'gopls' }
-for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      -- This will be the default in neovim 0.7+
-      debounce_text_changes = 150,
-    }
-  }
 end
 
 -- lsp completion
@@ -140,7 +130,7 @@ local cmp = require'cmp'
   -- Set configuration for specific filetype.
   cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
-      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it. 
+      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
     }, {
       { name = 'buffer' },
     })
@@ -164,10 +154,18 @@ local cmp = require'cmp'
 
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require('lspconfig')['gopls'].setup {
-    capabilities = capabilities
+
+local servers = { 'gopls', 'sumneko_lua', 'tsserver' }
+for _, lsp in ipairs(servers) do
+  require('lspconfig')[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      -- This will be the default in neovim 0.7+
+      debounce_text_changes = 150,
+    }
   }
+end
 
 -- nvim treesitter
 require('nvim-treesitter.configs').setup {
