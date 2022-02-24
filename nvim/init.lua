@@ -49,6 +49,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 
   -- Completion / linters / formatters
   Plug('nvim-treesitter/nvim-treesitter', {['do']= ':TSUpdate' })
+  Plug('prettier/vim-prettier', {['do']= 'yarn install --frozen-lockfile --production' })
 
   -- lsp
   Plug('neovim/nvim-lspconfig', {['branch']= 'master', ['do']= 'yarn install' })
@@ -66,6 +67,10 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 vim.call ('plug#end')
 
 local map = vim.api.nvim_set_keymap
+
+-- prettier
+execute('let g:prettier#autoformat = 1')
+execute('let g:prettier#autoformat_require_pragma = 0')
 
 -- lsp setup
 local opts = { noremap = true, silent = true }
@@ -155,7 +160,7 @@ local cmp = require'cmp'
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { 'gopls', 'sumneko_lua', 'tsserver' }
+local servers = { 'gopls', 'sumneko_lua', 'tsserver', 'eslint'}
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
