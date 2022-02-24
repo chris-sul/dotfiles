@@ -62,9 +62,12 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug('hrsh7th/nvim-cmp')
 
   -- Git
-  Plug('airblade/vim-gitgutter')
+  Plug('mhinz/vim-signify')
 
 vim.call ('plug#end')
+
+-- allow multiple signs per line
+execute('set signcolumn=auto:3')
 
 local map = vim.api.nvim_set_keymap
 
@@ -99,6 +102,17 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
+end
+
+-- diagnostic config
+vim.diagnostic.config({
+  virtual_text= false
+})
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
 -- lsp completion
