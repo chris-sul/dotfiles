@@ -50,6 +50,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   -- Completion / linters / formatters
   Plug('nvim-treesitter/nvim-treesitter', {['do']= ':TSUpdate' })
   Plug('prettier/vim-prettier', {['do']= 'yarn install --frozen-lockfile --production' })
+  Plug('rust-lang/rust.vim')
 
   -- lsp
   Plug('neovim/nvim-lspconfig', {['branch']= 'master', ['do']= 'yarn install' })
@@ -70,6 +71,9 @@ vim.call ('plug#end')
 execute('set signcolumn=auto:3')
 
 local map = vim.api.nvim_set_keymap
+
+-- rust vim
+execute('let g:rustfmt_autosave = 1')
 
 -- prettier
 execute('let g:prettier#autoformat = 1')
@@ -174,7 +178,7 @@ local cmp = require'cmp'
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { 'gopls', 'sumneko_lua', 'tsserver', 'eslint'}
+local servers = { 'gopls', 'sumneko_lua', 'tsserver', 'eslint', 'rust_analyzer'}
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
