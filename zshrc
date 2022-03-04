@@ -139,6 +139,8 @@ alias vi="nvim"
 
 alias lg="lazygit"
 
+alias wt="git worktree"
+
 # Docker Aliases
 alias dce="docker-compose exec"
 alias dcu="docker-compose up"
