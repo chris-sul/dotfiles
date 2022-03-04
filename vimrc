@@ -4,8 +4,12 @@
 " Reamp jk to be esc for QOL  
 imap jk <Esc>
 
-" Sets how many lines of history VIM has to remmeber set history=500
+" Other QOL remaps
+nnoremap Y y$
 
+nnoremap n nzzzv
+nnoremap N NzzzV
+nnoremap J mzJ`z
 
 " NeoVim
 set nocompatible
