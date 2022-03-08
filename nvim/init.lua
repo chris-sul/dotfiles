@@ -68,7 +68,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 vim.call ('plug#end')
 
 -- allow multiple signs per line
-execute('set signcolumn=auto:3')
+execute('set signcolumn=yes:2')
 
 local map = vim.api.nvim_set_keymap
 

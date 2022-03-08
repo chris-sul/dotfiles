@@ -18,3 +18,5 @@
 
 [include]
     path = ~/.gitconfig_local
+[user]
+	name = Chris Sullivan
