@@ -47,6 +47,8 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 
   Plug('wakatime/vim-wakatime')
 
+  Plug('ThePrimeagen/harpoon')
+
   -- Completion / linters / formatters
   Plug('nvim-treesitter/nvim-treesitter', {['do']= ':TSUpdate' })
   Plug('prettier/vim-prettier', {['do']= 'yarn install --frozen-lockfile --production' })
@@ -85,6 +87,10 @@ map('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 map('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 map('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 map('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
+-- Harpoon
+map('n', '<leader>m', '<cmd>lua require("harpoon.mark").add_file()<CR>', opts)
+map('n', '<leader>h', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
