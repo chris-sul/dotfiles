@@ -80,8 +80,8 @@ local map = vim.api.nvim_set_keymap
 execute('let g:rustfmt_autosave = 1')
 
 -- prettier
-execute('let g:prettier#autoformat = 1')
-execute('let g:prettier#autoformat_require_pragma = 0')
+execute('au FileType js,ts,css, let g:prettier#autoformat = 1')
+execute('au FileType js,ts,css let g:prettier#autoformat_require_pragma = 0')
 
 -- lsp setup
 local opts = { noremap = true, silent = true }
@@ -241,8 +241,6 @@ vim.api.nvim_set_keymap(
   ":bprev<cr>",
   { noremap = true, silent=true }
 )
--- Language server stuff
-execute("command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')")
 
 execute('syntax on')
 execute('colorscheme onedark')
