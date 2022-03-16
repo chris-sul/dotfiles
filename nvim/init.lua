@@ -45,6 +45,8 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug('kyazdani42/nvim-web-devicons')
   Plug('kyazdani42/nvim-tree.lua')
 
+  Plug('vim-test/vim-test')
+
   Plug('github/copilot.vim')
 
   Plug('wakatime/vim-wakatime')
