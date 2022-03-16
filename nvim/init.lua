@@ -96,6 +96,9 @@ map('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 map('n', '<leader>m', '<cmd>lua require("harpoon.mark").add_file()<CR>', opts)
 map('n', '<leader>h', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
 
+-- vim test terminal remap
+map('t', '<C-o>', '<C-\'><C-o>')
+
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
