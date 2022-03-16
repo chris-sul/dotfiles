@@ -29,6 +29,8 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 
   -- Apperance
   Plug('vim-airline/vim-airline')
+
+
   Plug('joshdick/onedark.vim', {as= 'onedark'} )
 
   Plug('ryanoasis/vim-devicons')
@@ -184,7 +186,7 @@ local cmp = require'cmp'
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { 'gopls', 'sumneko_lua', 'tsserver', 'eslint', 'rust_analyzer'}
+local servers = { 'gopls', 'sumneko_lua', 'tsserver', 'eslint', 'rust_analyzer', 'solargraph' }
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
