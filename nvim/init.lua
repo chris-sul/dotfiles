@@ -56,6 +56,10 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 
   Plug('ThePrimeagen/harpoon')
 
+  Plug('junegunn/fzf', {['do'] = 'install'})
+  Plug('junegunn/fzf.vim')
+
+
   -- Completion / linters / formatters
   Plug('nvim-treesitter/nvim-treesitter', {['do']= ':TSUpdate' })
   Plug('prettier/vim-prettier', {['do']= 'yarn install --frozen-lockfile --production' })
@@ -266,21 +270,22 @@ execute('set t_Co=256')
 execute('let g:airline_powerline_fonts = 1')
 execute('let g:airline#extensions#tabline#enabled = 1')
 
--- Telescope
-require('telescope').setup{
-  defaults = {
-    file_ignore_patterns = {
-      "node_modules",
-    }
-  }
-}
-require('telescope').load_extension('fzf')
+-- FZF
 vim.api.nvim_set_keymap(
   "n",
   "<leader>ff",
-  ":lua require('telescope.builtin').find_files()<cr>",
+  ":Files<cr>",
   { noremap = true, silent=true }
 )
+
+-- Telescope
+require('telescope').load_extension('fzf')
+--vim.api.nvim_set_keymap(
+--  "n",
+--  "<leader>ff",
+-- ":lua require('telescope.builtin').find_files()<cr>",
+--  { noremap = true, silent=true }
+--)
 
 vim.api.nvim_set_keymap(
   "n",
