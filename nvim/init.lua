@@ -97,7 +97,7 @@ map('n', '<leader>m', '<cmd>lua require("harpoon.mark").add_file()<CR>', opts)
 map('n', '<leader>h', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
 
 -- vim test terminal remap
-map('t', '<C-o>', '<C-\'><C-o>')
+map('t', '<C-o>', '<C-\'><C-o>', { noremap = true, silent = true })
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
