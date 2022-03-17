@@ -41,7 +41,10 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug('tpope/vim-surround')
   Plug('jiangmiao/auto-pairs')
   Plug('nvim-lua/plenary.nvim')
+
   Plug('nvim-telescope/telescope.nvim')
+  Plug('nvim-telescope/telescope-fzf-native.nvim', {['do'] = 'make'})
+
   Plug('kyazdani42/nvim-web-devicons')
   Plug('kyazdani42/nvim-tree.lua')
 
@@ -264,6 +267,7 @@ execute('let g:airline_powerline_fonts = 1')
 execute('let g:airline#extensions#tabline#enabled = 1')
 
 -- Telescope
+require('telescope').load_extension('fzf')
 vim.api.nvim_set_keymap(
   "n",
   "<leader>ff",
