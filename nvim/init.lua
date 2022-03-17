@@ -267,6 +267,13 @@ execute('let g:airline_powerline_fonts = 1')
 execute('let g:airline#extensions#tabline#enabled = 1')
 
 -- Telescope
+require('telescope').setup{
+  defaults = {
+    file_ignore_patterns = {
+      "node_modules",
+    }
+  }
+}
 require('telescope').load_extension('fzf')
 vim.api.nvim_set_keymap(
   "n",
