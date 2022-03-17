@@ -16,6 +16,10 @@ set nocompatible
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
+if has('nvim')
+  tmap <C-o> <C-\><C-n>
+endif
+
 ""
 
 """"""""""""""""""""""""""""""""""""""""""""""""
