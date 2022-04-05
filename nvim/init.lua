@@ -50,7 +50,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 
   Plug('vim-test/vim-test')
 
-  Plug('github/copilot.vim')
+  -- Plug('github/copilot.vim')
 
   Plug('wakatime/vim-wakatime')
 
