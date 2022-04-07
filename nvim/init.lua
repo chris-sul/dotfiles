@@ -74,6 +74,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug('hrsh7th/cmp-path')
   Plug('hrsh7th/cmp-cmdline')
   Plug('hrsh7th/nvim-cmp')
+  Plug('hrsh7th/vim-vsnip')
 
   -- Git
   Plug('mhinz/vim-signify')
