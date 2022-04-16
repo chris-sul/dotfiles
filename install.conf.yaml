@@ -13,3 +13,4 @@
     ~/.gitconfig: gitconfig
     ~/.config/nvim/init.lua: nvim/init.lua
     ~/.vimrc: vimrc 
+    ~/.vim: vim

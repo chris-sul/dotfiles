@@ -144,3 +144,15 @@ alias wt="git worktree"
 # Docker Aliases
 alias dce="docker-compose exec"
 alias dcu="docker-compose up"
+
+function lb() {
+  x="0"
+  if [[ ! -z "$1" ]]; then
+    x=$1
+  fi
+  vim ~/logbook/$(date -v +${x}d '+%Y-%m-%d').md
+}
+
+function lbstart() {
+  vim +'r ~/.vim/templates/start.md' ~/logbook/$(date '+%Y-%m-%d').md
+}
