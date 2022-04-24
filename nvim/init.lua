@@ -5,6 +5,7 @@ local fn = vim.fn
 -- Pull in vimrc
 execute('source ~/.vimrc')
 
+
 if (vim.g.vscode) then
     -- vscode specific stuff
     vim.g.mapleader = " "
@@ -260,12 +261,12 @@ else
     })
 
     -- switching buffers
-    vim.api.nvim_set_keymap("n", "<C-J>", ":bnext<cr>", {
+    vim.api.nvim_set_keymap("n", "gb", ":bnext<cr>", {
         noremap = true,
         silent = true
     })
 
-    vim.api.nvim_set_keymap("n", "<C-K>", ":bprev<cr>", {
+    vim.api.nvim_set_keymap("n", "gB", ":bprev<cr>", {
         noremap = true,
         silent = true
     })
@@ -289,6 +290,9 @@ else
     execute('let g:airline_powerline_fonts = 1')
     execute('let g:airline#extensions#tabline#enabled = 1')
 
+    -- Global status line
+    execute('set laststatus=3')
+    
     -- FZF
     vim.api.nvim_set_keymap("n", "<leader>ff", ":Files<cr>", {
         noremap = true,
