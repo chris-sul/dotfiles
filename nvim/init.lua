@@ -298,6 +298,10 @@ else
         noremap = true,
         silent = true
     })
+    vim.api.nvim_set_keymap("n", "<leader>fg", ":Rg<cr>", {
+        noremap = true,
+        silent = true
+    })
 
     -- Telescope
     require('telescope').load_extension('fzf')
@@ -312,10 +316,10 @@ else
         noremap = true,
         silent = true
     })
-    vim.api.nvim_set_keymap("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>", {
-        noremap = true,
-        silent = true
-    })
+    --vim.api.nvim_set_keymap("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>", {
+    --    noremap = true,
+    --    silent = true
+    --})
 
 end
 
