@@ -1,0 +1,97 @@
+---
+- name: Dev Machine Setup
+  hosts: devservers
+  become: true
+  remote_user: root
+
+  tasks:
+  - name: Make sure we have a 'wheel' group
+    ansible.builtin.group:
+      name: wheel
+  - name: Allow 'wheel' group to have passwordless sudo
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%wheel'
+      line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+      validate: 'visudo -cf %s'
+  - name: Add user 'chrissul'
+    ansible.builtin.user:
+      name: chrissul
+      password: '!'
+      comment: Chris Sullivan
+      groups: sudo, wheel
+      generate_ssh_key: yes
+      ssh_key_file: .ssh/main
+      ssh_key_type: ed25519
+  - name: Add ssh key for 'chrissul'
+    ansible.posix.authorized_key:
+      user: chrissul
+      state: present
+      key: "{{ lookup('file', '/Users/chrissul/.ssh/us_west_dev_1.pub') }}"
+
+  - name: Add dotfiles
+    become_user: chrissul
+    ansible.builtin.git:
+      repo: 'https://github.com/chris-sul/dotfiles.git'
+      dest: /home/chrissul/dotfiles
+      force: yes
+  - name: Install dotfiles
+    become_user: chrissul
+    command:
+      chdir: /home/chrissul/dotfiles
+      cmd: "./install"
+
+  - name: Install ZSH
+    apt:
+      name: zsh
+      state: latest
+      update_cache: true
+  - name: Change shell
+    user:
+      name: chrissul
+      shell: /bin/zsh  
+  - name: Check that config exists
+    stat:
+      path: /home/chrissul/.oh-my-zsh
+    register: oh_my_stats
+    become_user: chrissul
+  - name: Get Oh-My-Zsh Installer
+    become_user: chrissul
+    when: oh_my_stats.stat.exists == False
+    ansible.builtin.get_url:
+      url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+      dest: ~/.oh-my-installer
+  - name: Install Oh-My-Zsh
+    become_user: chrissul
+    when: oh_my_stats.stat.exists == False
+    shell:
+      cmd: "{{ item }}"
+      executable: /bin/zsh
+    with_items:
+      - "chmod +x ~/.oh-my-installer" 
+      - "~/.oh-my-installer --unattended --keep-zshrc"
+
+  - name: Install gcc
+    apt:
+      name: gcc
+  - name: Install Make
+    apt:
+      name: make
+  - name: Install libstdc++
+    apt:
+      name: libstdc++-11-dev
+  - name: Install fzf
+    apt:
+      name: fzf
+  - name: Install neovim
+    snap:
+      name: nvim
+      classic: yes
+      channel: "stable"
+
+  - name: Tmux TPM
+    become_user: chrissul
+    ansible.builtin.git:
+      repo: 'https://github.com/tmux-plugins/tpm'
+      dest: ~/.tmux/plugins/tpm
