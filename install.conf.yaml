@@ -12,5 +12,5 @@
     ~/.tmux.session: tmux/tmuxsession
     ~/.gitconfig: gitconfig
     ~/.config/nvim/init.lua: nvim/init.lua
-    ~/.vimrc: vimrc 
+    ~/.config/nvim/lua: nvim/lua
     ~/.vim: vim
