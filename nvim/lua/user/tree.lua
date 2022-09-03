@@ -2,7 +2,11 @@ local vim = vim
 local fn = vim.fn
 
 -- nvim tree setup
-require("nvim-tree").setup({})
+require("nvim-tree").setup({
+	git = {
+		ignore = false,
+	},
+})
 vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeToggle<cr>", {
 	noremap = true,
 	silent = true,
