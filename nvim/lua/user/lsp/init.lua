@@ -143,4 +143,23 @@ require("lspconfig")["sumneko_lua"].setup({
 	},
 })
 
+require("lspconfig")["yamlls"].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	flags = {
+		-- This will be the default in neovim 0.7+
+		debounce_text_changes = 150,
+	},
+	format = {
+		enable = true,
+	},
+	settings = {
+		yaml = {
+			schemas = {
+				["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+			},
+		},
+	},
+})
+
 require("user.lsp.null-ls")
