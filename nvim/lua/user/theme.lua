@@ -3,12 +3,7 @@ local execute = vim.api.nvim_command
 local fn = vim.fn
 
 execute("syntax on")
-
-vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-
 execute("colorscheme onedark")
-require("catppuccin").setup()
-execute("colorscheme catppuccin")
 
 if fn.empty("$TMUX") then
 	-- if fn.has("nvim") then
