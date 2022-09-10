@@ -26,6 +26,9 @@ Plug("vim-airline/vim-airline")
 Plug("joshdick/onedark.vim", {
 	as = "onedark",
 })
+Plug("catppuccin/nvim", {
+	as = "catppuccin"
+})
 Plug("ryanoasis/vim-devicons")
 Plug("kyazdani42/nvim-web-devicons")
 
