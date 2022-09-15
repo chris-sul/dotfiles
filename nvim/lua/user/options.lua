@@ -1,7 +1,6 @@
 local vim = vim
 
 local options = {
-	clipboard = "unnamedplus", -- allows neovim to access the system clipboard
 	autoread = true, -- when file changed, autoread it
 	number = true, -- set line numbers
 	ruler = true, -- always show current position
