@@ -2,7 +2,7 @@
 bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
 bind -n M-Up select-pane -U
-bind =n M-Down select-pane -D
+bind -n M-Down select-pane -D
 
 # Remap prefix to 'C-a'
 unbind C-b
@@ -29,11 +29,5 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'arcticicestudio/nord-tmux'
 
 set -g @nord_tmux_no_patched_font "1"
-
-# source pane windows
-new
-split-window -v
-selectp -t 0
-splitw -h
 
 run '~/.tmux/plugins/tpm/tpm'
