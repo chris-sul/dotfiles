@@ -60,9 +60,7 @@ Plug("junegunn/fzf.vim")
 Plug("nvim-treesitter/nvim-treesitter", {
 	["do"] = ":TSUpdate",
 })
-Plug("nvim-treesitter/nvim-treesitter-context", {
-	["do"] = ":TSUpdate",
-})
+Plug("nvim-treesitter/nvim-treesitter-context")
 Plug("prettier/vim-prettier", {
 	["do"] = "yarn install --frozen-lockfile --production",
 })
