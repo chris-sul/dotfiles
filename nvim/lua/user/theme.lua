@@ -18,9 +18,16 @@ end
 execute("set t_Co=256")
 execute("set laststatus=3")
 
+require("nvim-navic").setup({
+	highlight = true,
+})
+local navic = require("nvim-navic")
+
 require("lualine").setup({
 	options = {
 		theme = "auto",
+		globalstatus = true,
+		icons_enabled = true,
 	},
 	sections = {
 		lualine_a = { "mode" },
@@ -40,13 +47,13 @@ require("lualine").setup({
 					info = "DiagnosticInfo", -- Changes diagnostics' info color.
 					hint = "DiagnosticHint", -- Changes diagnostics' hint color.
 				},
-				globalstatus = true,
-				icons_enabled = true,
-				--symbols = { error = "E", warn = "W", info = "I", hint = "H" },
 				colored = true, -- Displays diagnostics status in color if set to true.
 				update_in_insert = false, -- Update diagnostics in insert mode.
 				always_visible = false, -- Show diagnostics even if there are none.
 			},
 		},
+	},
+	winbar = {
+		lualine_c = { navic.get_location },
 	},
 })

@@ -69,9 +69,7 @@ Plug("neovim/nvim-lspconfig", {
 	["do"] = "yarn install",
 })
 Plug("jose-elias-alvarez/null-ls.nvim")
-Plug("glepnir/lspsaga.nvim", {
-	["branch"] = "main",
-})
+Plug("SmiteshP/nvim-navic")
 
 -- completion
 Plug("hrsh7th/cmp-nvim-lsp")
