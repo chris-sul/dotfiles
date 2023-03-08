@@ -164,4 +164,16 @@ require("lspconfig")["yamlls"].setup({
 
 require('lspsaga').setup({})
 
+require("lspconfig")["pyright"].setup{
+	settings = {
+		python = {
+			analysis = {
+				autoSearchPaths = true,
+				diagnosticMode = "workspace",
+				useLibraryCodeForTypes = true
+			}
+		}
+	}
+}
+
 require("user.lsp.null-ls")
