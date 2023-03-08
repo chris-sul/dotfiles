@@ -20,7 +20,7 @@ vim.call("plug#begin", "~/.config/nvim/plugged")
 Plug("goolord/alpha-nvim")
 
 -- Status Bar
-Plug("vim-airline/vim-airline")
+Plug("nvim-lualine/lualine.nvim")
 
 -- Appearance
 Plug("joshdick/onedark.vim", {
@@ -71,6 +71,9 @@ Plug("neovim/nvim-lspconfig", {
 	["do"] = "yarn install",
 })
 Plug("jose-elias-alvarez/null-ls.nvim")
+Plug("glepnir/lspsaga.nvim", {
+	["branch"] = "main",
+})
 
 -- completion
 Plug("hrsh7th/cmp-nvim-lsp")
