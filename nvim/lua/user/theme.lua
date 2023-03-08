@@ -3,7 +3,7 @@ local execute = vim.api.nvim_command
 local fn = vim.fn
 
 execute("syntax on")
-execute("colorscheme onedark")
+execute("colorscheme catppuccin-frappe")
 
 if fn.empty("$TMUX") then
 	-- if fn.has("nvim") then

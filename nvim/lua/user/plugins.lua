@@ -23,9 +23,7 @@ Plug("goolord/alpha-nvim")
 Plug("nvim-lualine/lualine.nvim")
 
 -- Appearance
-Plug("joshdick/onedark.vim", {
-	as = "onedark",
-})
+Plug("catppuccin/nvim")
 Plug("ryanoasis/vim-devicons")
 Plug("kyazdani42/nvim-web-devicons")
 
