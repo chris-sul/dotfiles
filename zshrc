@@ -26,8 +26,6 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME="dracula-pro"
 
-export PATH="/Users/chrissul/Python/3.9/bin:$PATH"
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -130,8 +128,6 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export AWS_USER_STAGE=chrissul
-
 alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
@@ -155,3 +151,5 @@ function lb() {
 function lbstart() {
   vim +'r ~/.vim/templates/start.md' ~/logbook/$(date '+%Y-%m-%d').md
 }
+
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
