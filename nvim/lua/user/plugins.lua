@@ -1,85 +1,75 @@
 local vim = vim
-local execute = vim.api.nvim_command
-local fn = vim.fn
 
--- Ensure that Plug is installed
-local install_path = "~/.config/nvim/autoload/plug.vim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	execute(
-		"silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-	)
-	-- need to install somehow
-	execute("autocmd VimEnter * PlugInstall | source $MYVIMRC")
+-- Ensure that Lazy is installed
+local lazypath = vim.fn.stdpath("config") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  print("Installing Lazy...")
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
--- Install Plugins
-local Plug = vim.fn["plug#"]
-vim.call("plug#begin", "~/.config/nvim/plugged")
 
--- Greeter
-Plug("goolord/alpha-nvim")
+-- Plugins
+require("lazy").setup({
+	-- Greeter
+	"goolord/alpha-nvim",
 
--- Status Bar
-Plug("nvim-lualine/lualine.nvim")
+	-- Status Bar
+	"nvim-lualine/lualine.nvim",
 
--- Appearance
-Plug("catppuccin/nvim")
-Plug("ryanoasis/vim-devicons")
-Plug("kyazdani42/nvim-web-devicons")
+	-- Appearance
+	"catppuccin/nvim",
+	"ryanoasis/vim-devicons",
+	"kyazdani42/nvim-web-devicons",
 
--- Language Highlighting
-Plug("sheerun/vim-polyglot")
+	-- Language Highlighting
+	"sheerun/vim-polyglot",
 
--- Vim motion
-Plug("easymotion/vim-easymotion")
-Plug("tpope/vim-surround")
+	-- Vim motion
+	"easymotion/vim-easymotion",
+	"tpope/vim-surround",
 
--- Useful Utils
-Plug("jiangmiao/auto-pairs")
-Plug("nvim-lua/plenary.nvim")
-Plug("ThePrimeagen/harpoon")
+	-- Useful Utils
+	"jiangmiao/auto-pairs",
+	"nvim-lua/plenary.nvim",
+	"ThePrimeagen/harpoon",
 
--- Telescope
-Plug("nvim-telescope/telescope.nvim")
-Plug("nvim-telescope/telescope-fzf-native.nvim", {
-	["do"] = "make",
+	-- Telescope
+	"nvim-telescope/telescope.nvim",
+	{"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
+
+	-- Nvim Tree
+	"kyazdani42/nvim-tree.lua",
+
+	-- fzf
+	"junegunn/fzf",
+	"junegunn/fzf.vim",
+
+	-- linters / formatters
+	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+	"nvim-treesitter/nvim-treesitter-context",
+	{"prettier/vim-prettier", build = "yarn install --frozen-lockfile --production"},
+
+	-- Lsp
+	{"neovim/nvim-lspconfig", branch = "master", build = "yarn install"},
+	"jose-elias-alvarez/null-ls.nvim",
+	"SmiteshP/nvim-navic",
+
+	-- completion
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-path",
+	"hrsh7th/cmp-cmdline",
+	"hrsh7th/nvim-cmp",
+	"hrsh7th/vim-vsnip",
+
+	-- Git
+	"mhinz/vim-signify",
 })
-
--- Nvim Tree
-Plug("kyazdani42/nvim-tree.lua")
-
--- fzf
-Plug("junegunn/fzf", {
-	["do"] = "install",
-})
-Plug("junegunn/fzf.vim")
-
--- linters / formatters
-Plug("nvim-treesitter/nvim-treesitter", {
-	["do"] = ":TSUpdate",
-})
-Plug("nvim-treesitter/nvim-treesitter-context")
-Plug("prettier/vim-prettier", {
-	["do"] = "yarn install --frozen-lockfile --production",
-})
-
--- Lsp
-Plug("neovim/nvim-lspconfig", {
-	["branch"] = "master",
-	["do"] = "yarn install",
-})
-Plug("jose-elias-alvarez/null-ls.nvim")
-Plug("SmiteshP/nvim-navic")
-
--- completion
-Plug("hrsh7th/cmp-nvim-lsp")
-Plug("hrsh7th/cmp-buffer")
-Plug("hrsh7th/cmp-path")
-Plug("hrsh7th/cmp-cmdline")
-Plug("hrsh7th/nvim-cmp")
-Plug("hrsh7th/vim-vsnip")
-
--- Git
-Plug("mhinz/vim-signify")
-
-vim.call("plug#end")

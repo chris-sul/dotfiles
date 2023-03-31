@@ -133,8 +133,8 @@ alias lg="lazygit"
 alias wt="git worktree"
 
 # Docker Aliases
-alias dce="docker-compose exec"
-alias dcu="docker-compose up"
+alias dex="docker-compose exec"
+alias dup="docker-compose up"
 
 function lb() {
   x="0"
