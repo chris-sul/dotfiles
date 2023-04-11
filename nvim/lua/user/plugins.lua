@@ -40,6 +40,7 @@ require("lazy").setup({
 	"jiangmiao/auto-pairs",
 	"nvim-lua/plenary.nvim",
 	"ThePrimeagen/harpoon",
+	"folke/which-key.nvim",
 
 	-- Telescope
 	"nvim-telescope/telescope.nvim",
