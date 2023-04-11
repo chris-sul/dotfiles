@@ -1,0 +1,9 @@
+yabai -m config                             \
+        layout              bsp             \
+        auto_balance        on              \
+        window_border       on              \
+        active_window_border_color       0xff32a852 \
+        window_border_width          4              \
+    window_border_radius         12             \
+    window_border_blur           off            \
+    window_border_hidpi          on             

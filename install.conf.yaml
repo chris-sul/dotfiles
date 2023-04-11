@@ -14,3 +14,5 @@
     ~/.config/nvim/init.lua: nvim/init.lua
     ~/.config/nvim/lua: nvim/lua
     ~/.vim: vim
+    ~/.yabairc: yabai/yabai
+    ~/.config/skhd/skhdrc: skhd/skhdrc
