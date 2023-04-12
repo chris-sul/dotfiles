@@ -18,10 +18,10 @@ end
 execute("set t_Co=256")
 execute("set laststatus=3")
 
-require("nvim-navic").setup({
+local navic = require("nvim-navic")
+navic.setup({
 	highlight = true,
 })
-local navic = require("nvim-navic")
 
 require("lualine").setup({
 	options = {
@@ -54,6 +54,16 @@ require("lualine").setup({
 		},
 	},
 	winbar = {
-		lualine_c = { navic.get_location },
+		lualine_a = { "filename" },
+		lualine_c = {
+			{
+				function()
+                	return navic.get_location()
+              	end,
+				cond = function()
+                	return navic.is_available()
+              	end
+			}
+		},
 	},
 })
