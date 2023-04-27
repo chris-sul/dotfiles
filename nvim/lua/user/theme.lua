@@ -32,7 +32,7 @@ require("lualine").setup({
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff" },
-		lualine_c = { "buffers" },
+		lualine_c = { "filename" },
 		lualine_x = { "tabs" },
 		lualine_y = { "progress" },
 		lualine_z = {
@@ -54,7 +54,6 @@ require("lualine").setup({
 		},
 	},
 	winbar = {
-		lualine_a = { "filename" },
 		lualine_c = {
 			{
 				function()
