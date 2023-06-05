@@ -3,11 +3,22 @@
 
 [alias]
     unstage = reset HEAD --
-    st = status
+    s = status
+    am = commit --amend --date=now
+    co = checkout
+    cob = checkout -b
+    br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
     rebase-feature = "!f() { git rebase -i `git merge-base --fork-point master`; }; f"
     update-feature = "!f() { git checkout master && git pull && git checkout - && git rebase master; }; f"
     branches = !legit branches
     sync = !legit sync
+    wt = worktree
+    last = log -1 HEAD --stat
+    l = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
+    d = diff
+    ds = diff --stat
+    la = "!git config -l | grep alias | cut -c 7-"
+
 
 [color]
     ui = auto
