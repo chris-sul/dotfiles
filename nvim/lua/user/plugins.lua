@@ -45,9 +45,11 @@ require("lazy").setup({
 	-- Telescope
 	"nvim-telescope/telescope.nvim",
 	{"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
+	"nvim-telescope/telescope-file-browser.nvim",
 
+	-- Removing this to try out telescope file browser
 	-- Nvim Tree
-	"kyazdani42/nvim-tree.lua",
+	-- "kyazdani42/nvim-tree.lua",
 
 	-- fzf
 	"junegunn/fzf",
