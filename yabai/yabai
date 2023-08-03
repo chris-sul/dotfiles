@@ -1,9 +1,17 @@
-yabai -m config                             \
-        layout              bsp             \
-        auto_balance        on              \
-        window_border       on              \
-        active_window_border_color       0xff32a852 \
-        window_border_width          4              \
-    window_border_radius         12             \
-    window_border_blur           off            \
-    window_border_hidpi          on             
+yabai -m config                                 \
+    layout                      bsp             \
+    auto_balance                on              \
+    window_border               on              \
+    active_window_border_color  0xffe1e3e4      \
+    window_border_width         4               \
+    window_border_radius        12              \
+    window_border_blur          off             \
+    window_border_hidpi         on              \
+    top_padding                 30              \
+    bottom_padding              10              \
+    left_padding                10              \
+    right_padding               10           
+
+
+yabai -m rule --add app="^(Software Update|Dictionary|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|App Store|Alfred|Activity Monitor|System Information)$" manage=off
+

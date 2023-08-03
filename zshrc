@@ -2,6 +2,9 @@ source ~/zsh-snap/znap.zsh
 # Need to install this manually
 # Run znap pull
 
+# Print pokemon https://github.com/nuke-dash/pokemon-colorscripts-mac
+pokemon-colorscripts -r
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
