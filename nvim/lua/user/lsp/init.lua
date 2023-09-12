@@ -117,7 +117,7 @@ cmp.setup.cmdline(":", {
 -- Setup lspconfig
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { "gopls", "tsserver", "eslint", "rust_analyzer", "solargraph" }
+local servers = { "gopls", "tsserver", "eslint", "rust_analyzer", "solargraph", "metals"}
 for _, lsp in ipairs(servers) do
 	require("lspconfig")[lsp].setup({
 		on_attach = on_attach,
