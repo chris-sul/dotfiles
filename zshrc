@@ -134,6 +134,8 @@ alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
 
+alias g="git"
+
 alias lg="lazygit"
 
 alias wt="git worktree"

@@ -3,8 +3,9 @@
 
 [alias]
     unstage = reset HEAD --
-    s = status
+    s = status -s
     am = commit --amend --date=now
+    ai = add -i
     co = checkout
     cob = checkout -b
     br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
@@ -17,8 +18,10 @@
     l = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
     d = diff
     ds = diff --stat
-    la = "!git config -l | grep alias | cut -c 7-"
+    wdiff = diff --word-diff
+    mt = "!f() { git merge --no-commit --no-ff \"$1\"; git merge --abort; echo \"Merge aborted\";  };f"
 
+    la = "!git config -l | grep alias | cut -c 7-"
 
 [color]
     ui = auto
