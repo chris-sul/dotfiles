@@ -11,5 +11,7 @@ require("nvim-treesitter.configs").setup({
 
 -- nvim treesitter context
 require("treesitter-context").setup({
-	enable = true,
+	enable = false,
+	max_lines = 10,
+	trim_scope = 'inner',
 })

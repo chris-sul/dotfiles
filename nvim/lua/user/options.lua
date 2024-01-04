@@ -15,6 +15,7 @@ local options = {
 	splitbelow = true, -- window management
 	splitright = true, -- window management
 	signcolumn = "yes:2", -- allow multiple signs per line (for git)
+	colorcolumn = "80", -- color the 80 column
 }
 
 for k, v in pairs(options) do
