@@ -117,7 +117,7 @@ cmp.setup.cmdline(":", {
 -- Setup lspconfig
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { "gopls", "tsserver", "eslint", "rust_analyzer", "solargraph", "metals" }
+local servers = { "gopls", "tsserver", "eslint", "rust_analyzer", "solargraph" }
 for _, lsp in ipairs(servers) do
 	require("lspconfig")[lsp].setup({
 		on_attach = on_attach,
@@ -131,6 +131,25 @@ for _, lsp in ipairs(servers) do
 		},
 	})
 end
+
+require("lspconfig")["metals"].setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	{
+		compilerOptions = {
+			snippetAutoIndent = false
+		},
+		flags = {
+			-- This will be the default in neovim 0.7+
+			debounce_text_changes = 150,
+		},
+		format = {
+			enable = true,
+		},
+		isHttpEnabled = true,
+		statusBarProvider = "show-message"
+	}
+}
 
 -- Lua
 require("lspconfig")["lua_ls"].setup({

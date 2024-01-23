@@ -2,17 +2,17 @@
     default = simple
 
 [alias]
+    cm = commit -m
     unstage = reset HEAD --
     s = status -s
     am = commit --amend --date=now
     ai = add -i
     co = checkout
     cob = checkout -b
+    ci = !git checkout $(git branch | fzf | xargs)
     br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
     rebase-feature = "!f() { git rebase -i `git merge-base --fork-point master`; }; f"
     update-feature = "!f() { git checkout master && git pull && git checkout - && git rebase master; }; f"
-    branches = !legit branches
-    sync = !legit sync
     wt = worktree
     last = log -1 HEAD --stat
     l = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
@@ -20,8 +20,13 @@
     ds = diff --stat
     wdiff = diff --word-diff
     mt = "!f() { git merge --no-commit --no-ff \"$1\"; git merge --abort; echo \"Merge aborted\";  };f"
-
     la = "!git config -l | grep alias | cut -c 7-"
+    purge = "!f() { git branch --v | grep '\\[gone\\]' | awk '{print $1}' | xargs git branch -D;};f"
+
+    p = "!f() { git diff --staged --binary > ~/.git-patches/$1.patch; }; f"
+    pl = "!f() { ls ~/.git-patches; }; f"
+    pa = "!f() { git apply ~/.git-patches/$1.patch; }; f"
+
 
 [color]
     ui = auto
