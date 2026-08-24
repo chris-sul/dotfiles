@@ -1,11 +1,4 @@
 local vim = vim
-local execute = vim.api.nvim_command
-local fn = vim.fn
-
-local status_ok, _ = pcall(require, "lspconfig")
-if not status_ok then
-	return
-end
 
 local map = vim.api.nvim_set_keymap
 
@@ -23,7 +16,7 @@ local navic = require("nvim-navic")
 
 local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -114,67 +107,41 @@ cmp.setup.cmdline(":", {
 	} }),
 })
 
--- Setup lspconfig
+-- Setup LSP servers
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { "gopls", "tsserver", "eslint", "rust_analyzer", "solargraph" }
+-- Defaults applied to every server configured below
+vim.lsp.config("*", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+local servers = { "gopls", "ts_ls", "eslint", "rust_analyzer", "solargraph" }
 for _, lsp in ipairs(servers) do
-	require("lspconfig")[lsp].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-		flags = {
-			-- This will be the default in neovim 0.7+
-			debounce_text_changes = 150,
-		},
-		format = {
-			enable = true,
-		},
-	})
+	vim.lsp.config(lsp, {})
 end
 
-require("lspconfig")["metals"].setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	{
-		compilerOptions = {
-			snippetAutoIndent = false
-		},
-		flags = {
-			-- This will be the default in neovim 0.7+
-			debounce_text_changes = 150,
-		},
-		format = {
-			enable = true,
-		},
+vim.lsp.config("metals", {
+	init_options = {
+		statusBarProvider = "show-message",
 		isHttpEnabled = true,
-		statusBarProvider = "show-message"
-	}
-}
+		compilerOptions = {
+			snippetAutoIndent = false,
+		},
+	},
+})
 
 -- Lua
-require("lspconfig")["lua_ls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	flags = {
-		-- This will be the default in neovim 0.7+
-		debounce_text_changes = 150,
-	},
-	format = {
-		enable = true,
-	},
-	defaultConfig = {
-		indent_style = "space",
-		indent_size = "2",
-	},
+vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
 			runtime = {
 				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = 'LuaJIT',
+				version = "LuaJIT",
 			},
 			diagnostics = {
 				-- Get the language server to recognize the `vim` global
-				globals = { 'vim' },
+				globals = { "vim" },
 			},
 			workspace = {
 				-- Make the server aware of Neovim runtime files
@@ -188,16 +155,7 @@ require("lspconfig")["lua_ls"].setup({
 	},
 })
 
-require("lspconfig")["yamlls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	flags = {
-		-- This will be the default in neovim 0.7+
-		debounce_text_changes = 150,
-	},
-	format = {
-		enable = true,
-	},
+vim.lsp.config("yamlls", {
 	settings = {
 		yaml = {
 			schemas = {
@@ -207,18 +165,18 @@ require("lspconfig")["yamlls"].setup({
 	},
 })
 
-require("lspconfig")["pyright"].setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
+vim.lsp.config("pyright", {
 	settings = {
 		python = {
 			analysis = {
 				autoSearchPaths = true,
 				diagnosticMode = "workspace",
-				useLibraryCodeForTypes = true
-			}
-		}
-	}
-}
+				useLibraryCodeForTypes = true,
+			},
+		},
+	},
+})
+
+vim.lsp.enable({ "gopls", "ts_ls", "eslint", "rust_analyzer", "solargraph", "metals", "lua_ls", "yamlls", "pyright" })
 
 require("user.lsp.null-ls")

@@ -56,13 +56,13 @@ require("lazy").setup({
 	"junegunn/fzf.vim",
 
 	-- linters / formatters
-	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+	{"nvim-treesitter/nvim-treesitter", branch = "master", build = ":TSUpdate"},
 	"nvim-treesitter/nvim-treesitter-context",
 	{"prettier/vim-prettier", build = "yarn install --frozen-lockfile --production"},
 
 	-- Lsp
-	{"neovim/nvim-lspconfig", branch = "master", build = "yarn install"},
-	"jose-elias-alvarez/null-ls.nvim",
+	{"neovim/nvim-lspconfig", branch = "master"},
+	"nvimtools/none-ls.nvim",
 	"SmiteshP/nvim-navic",
 
 	-- completion
